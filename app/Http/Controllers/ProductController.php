@@ -1,11 +1,11 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Product;
-use App\Order;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller {
 
@@ -36,7 +36,17 @@ class ProductController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$data = Input::all();
+        $val = Validator::make($data, Product::$rules);
+        if ($val->fails()) {
+            return Redirect::to('/product/create')->with('errors', $val->messages()->toArray());
+        }
+        if(Product::add($data)){
+            Session::flash('message', 'Товар успешно добавлен!');
+        }else{
+            Session::flash('errors', 'Ошибка при добавление товара!');
+        }
+        return Redirect::to('/product');
 	}
 
 	/**

@@ -17,10 +17,10 @@ class CreateProductsTable extends Migration {
 			$table->increments('id');
             $table->string('title');
             $table->integer('price');
-            $table->text('desc');
-            $table->text('consist');
-            $table->text('boxing');
-            $table->text('size');
+            $table->string('desc');
+            $table->string('consist');
+            $table->string('boxing');
+            $table->string('size');
             $table->float('weight');
             $table->json('rating');
             $table->integer('prod_time');
