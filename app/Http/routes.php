@@ -21,3 +21,4 @@ Route::controllers([
 ]);
 
 Route::resource('product','ProductController');
+Route::resource('order','OrderController');

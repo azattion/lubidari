@@ -3,23 +3,35 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Подарки</div>
-                    <div class="panel-body">
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        {{--dd($data)--}}
-                    </div>
-                </div>
+            <div class="col-lg-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Размер</th>
+                        <th>Вес</th>
+                        <th>Функции</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data as $one)
+                            <tr>
+                                <td>{{{$one->id}}}</td>
+                                <td><a href="{{{route('product.show',$one->id)}}}">{{{$one->title}}}</a></td>
+                                <td>{{{$one->price}}}</td>
+                                <td>{{{$one->size}}}</td>
+                                <td>{{{$one->weight}}}</td>
+                                <td>
+                                    <a href="{{route('product.edit',$one->id)}}"><span class="glyphicon glyphicon-edit"></span> Правка</a>
+                                    <a href="{{route('product.destroy',$one->id)}}"><span class="glyphicon glyphicon-trash"></span> Удалить</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="pagination pagination-centered"></div>
             </div>
         </div>
     </div>

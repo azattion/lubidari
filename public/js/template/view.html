@@ -1,0 +1,17 @@
+<div>
+    <h3>Анкета</h3> 
+<table class="text-center" style="margin: 0 auto;" ng-controller="ModalDemoCtrl">
+    <tr>
+        <th>NAME</th>
+        <th>CREATED</th>
+        <th>UPDATED</th>
+    </tr>    
+    <tr ng-repeat="one in data| filter:query">
+        <td><a ng-click="open()">{{one.name}}</a></td>
+        <td>{{one.created_at}}</td>
+        <td>{{one.updated_at}}</td>
+    </tr>   
+</table>
+    <button class="button" ng-click="ok()">OK</button>
+    <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
+</div>

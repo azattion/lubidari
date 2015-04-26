@@ -1,0 +1,31 @@
+<script type="text/ng-template"  id="node.html">
+    <ul class="node-list">
+
+    <li ng-repeat="one in node" class="branch">
+
+    <a class="node">
+
+    <img width="30" height="30" class="node_image" src="data:image/png;base64,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">
+
+    <div><{one["name"]}></div>
+
+    <div>Статус</div>  
+
+    <span class="dropdowntoggle" dropdown-toggle="#dropdown-toggle-<{one['id']}>">        
+    </span>
+
+    </a> 
+    <ul id="dropdown-toggle-<{one['id']}>" class="f-dropdown">
+    <li><a ng-click="console.log('12')"><i class="fi-torso"></i> View profile</a></li>
+    <li><a><i class="fi-pencil"></i> Edit profile</a></li>
+    <li><a><i class="fi-plus"></i> Add child</a></li>
+    </ul>  
+    <span ng-include="'node.html'" ng-init="node=one['children']"></span>
+    </li>
+    </ul>
+</script>
+
+<alert  ng-repeat="alert in alerts" close="close($index)" type="alert.type"><{alert.msg}></alert>
+<div ng-show="loading" class="text-center">Загружается...</div>
+
+<div ng-include="'node.html'" ng-init="node = data" class="pedigree"></div>

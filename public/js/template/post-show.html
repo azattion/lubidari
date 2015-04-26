@@ -1,0 +1,47 @@
+<alert  ng-repeat="alert in alerts" close="close($index)" type="alert.type"><{alert.msg}></alert>
+<div ng-show="loading" class="text-center loading">Загружается...</div>
+
+<div class="row">    
+    <div class="small-9 columns">
+        <div>
+            <h3><a href="/genealogy#/post/<{data.id}>"><{data.title}></a></h3>
+            <img ng-src="<{data.preview}>" class="small-3 columns th"/>
+            <div class="small-9 columns"><{data.body}></div>
+            <div class="clearfix"></div>
+            <ul class="inline-list right">
+                <li>
+                    <span tooltip="Каралган"  tooltip-trigger="mouseenter" tooltip-placement="bottom"><i class="fi-eye  size-18"></i> <{data.count_view}></span></li>
+                <li>
+                    <span tooltip="Кошулган"  tooltip-trigger="mouseenter" tooltip-placement="bottom"><i class="fi-calendar  size-18"></i> <{data.created_at}></span></li>
+                <li>
+                    <span tooltip="Туздотулгон"  tooltip-trigger="mouseenter" tooltip-placement="bottom"><i class="fi-refresh  size-18"></i>  <{data.updated_at}></span></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="small-3 columns">
+        <div class="panel">
+            <h3>Дата боюнча</h3>
+            <ul>
+                <li>Ушул жума  <span class="label">12</span></li>
+                <li>1 жума мурун  <span class="label">42</span></li>
+                <li>2 жума мурун  <span class="label">36</span></li>
+            </ul>
+            <h3>Издоо</h3>
+            <label>Текст:
+                <input type="text" placeholder="Издоолучу соз" ng-model="search"/>
+            </label>
+        </div>
+        <div class="panel" ng-show="data.length">
+            <h3>TOP-5</h3>
+            <ul>
+                <li ng-repeat="post in data| limitTo:5">
+                    <a href="/genealogy/#post/<{post.id}>"><{post.title}></a>
+                </li>
+            </ul>
+        </div>
+        <div style="text-align: center;">
+            <img src="http://www.super.kg/commercial/2015-3/5_1.gif" alt="manas_us"/>
+        </div>
+    </div>
+</div>

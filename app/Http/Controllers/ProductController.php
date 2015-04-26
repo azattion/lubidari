@@ -5,6 +5,7 @@ use App\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller {
@@ -16,7 +17,8 @@ class ProductController extends Controller {
 	 */
 	public function index()
 	{
-		return view('product.index',['data'=>Product::all()]);
+        $data = Product::orderBy('created_at', 'DESC')->paginate(50);
+		return view('product.index',['data'=>$data]);
 	}
 
 	/**
@@ -39,12 +41,12 @@ class ProductController extends Controller {
 		$data = Input::all();
         $val = Validator::make($data, Product::$rules);
         if ($val->fails()) {
-            return Redirect::to('/product/create')->with('errors', $val->messages()->toArray());
+            return redirect()->back()->withErrors($val->messages());
         }
         if(Product::add($data)){
             Session::flash('message', 'Товар успешно добавлен!');
         }else{
-            Session::flash('errors', 'Ошибка при добавление товара!');
+            return redirect()->back()->withErrors('Ошибка при удаление товара');
         }
         return Redirect::to('/product');
 	}
@@ -57,7 +59,7 @@ class ProductController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        return view('product.show',['data' => Product::find($id)]);
 	}
 
 	/**
@@ -68,7 +70,7 @@ class ProductController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		return view('product.edit',['data' => Product::find($id)->first()]);
 	}
 
 	/**
@@ -79,7 +81,17 @@ class ProductController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $data = Input::all();
+        $val = Validator::make($data, Product::$rules);
+        if ($val->fails()) {
+            return redirect()->back()->withErrors($val->messages());
+        }
+        if(Product::up_data($id,$data)){
+            Session::flash('message', 'Товар успешно добавлен!');
+        }else{
+            return redirect()->back()->withErrors('Ошибка при удаление товара');
+        }
+       // return Redirect::to('/product/'.$id.'/show');
 	}
 
 	/**
@@ -90,7 +102,12 @@ class ProductController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		if(Product::destroy($id)){
+            Session::flash('message', 'Товар успешно добавлен!');
+        }else{
+            return redirect()->back()->withErrors('Ошибка при удаление товара');
+        }
+        return Redirect::to('/product/'.$id.'/edit');
 	}
 
 }
