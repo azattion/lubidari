@@ -1,9 +1,7 @@
 'use strict';
-
 /* Services */
-
+/*
 var services = angular.module('GenService', ['ngResource']);
-
 services.factory('Service',
         function($resource) {
             return $resource('/genealogy/list',
@@ -15,17 +13,4 @@ services.factory('ServiceId',
                 show: {method: 'GET', params: {id: '@id'}}
             });
         });
-
-services.factory('Posts',
-        function($resource) {
-            return $resource('/post', {},
-                    {query: {method: 'GET'}});
-        });
-
-services.factory('Posts',
-        function($resource) {
-            return $resource('/post/:id', {}, {
-                show: {metod: 'GET', params: {id: '@id'}}
-            });
-        });
-
+*/
