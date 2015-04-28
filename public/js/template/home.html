@@ -1,2 +1,10 @@
-444
+<p ng-show="loading" class="text-center">Загружается....</p>
 
+<div class="row">
+    <div ng-repeat="one in data" class="col-md-2" style="height: 100px;">
+        <a href="#/<{one.id}>"><{one.title}></a>
+        <button class="btn btn-success">
+            <span class="glyphicon glyphicon-shopping-cart"> Заказать</span>
+        </button>
+    </div>
+</div>

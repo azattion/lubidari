@@ -2,22 +2,28 @@
 
 /* App Module */
 var genealogy = angular.module('lubidariApp', [
-    'ngRoute',
-    'Controllers'
+        'ngRoute',
+        'ProdService',
+        'Controllers',
+        'ui.bootstrap'
     ],
-        function($interpolateProvider) {
-            $interpolateProvider.startSymbol('<{').endSymbol('}>');
-        });
+    function ($interpolateProvider) {
+        $interpolateProvider.startSymbol('<{').endSymbol('}>');
+    });
 
 
 genealogy.config(['$routeProvider',
-    function($routeProvider) {
+    function ($routeProvider) {
         $routeProvider.
-                when('/', {
-                    templateUrl: '/js/template/home.html',
-                    controller: 'HomeCtrl'
-                }).
-                otherwise({
-                    redirectTo: '/'
-                });
+            when('/', {
+                templateUrl: '/js/template/home.html',
+                controller: 'HomeCtrl'
+            }).
+            when('/:id', {
+                templateUrl: '/js/template/show.html',
+                controller: 'ShowCtrl'
+            }).
+            otherwise({
+                redirectTo: '/'
+            });
     }]);

@@ -20,5 +20,7 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+Route::get('/product/list','ProductController@listing');
+Route::get('/product/show/{id}','ProductController@showAjax');
 Route::resource('product','ProductController');
-Route::resource('order','OrderController');
+//Route::resource('order','OrderController');

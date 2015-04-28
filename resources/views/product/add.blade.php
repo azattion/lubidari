@@ -12,6 +12,7 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Название</label>
+
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                                 </div>
@@ -19,14 +20,19 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Цена</label>
-                                <div class="col-md-6 input-group">
-                                    <input type="number" class="form-control" name="price" value="{{ old('price') }}">
-                                    <span class="input-group-addon">сом</span>
+
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" name="price"
+                                               value="{{ old('price') }}">
+                                        <span class="input-group-addon">сом</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Состав</label>
+
                                 <div class="col-md-6">
                                     <textarea class="form-control" name="consist">{{ old('consist') }}</textarea>
                                 </div>
@@ -34,6 +40,7 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Описание</label>
+
                                 <div class="col-md-6">
                                     <textarea name="desc" class="form-control">{{ old('desc') }}</textarea>
                                 </div>
@@ -41,6 +48,7 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Упаковка</label>
+
                                 <div class="col-md-6">
                                     <textarea name="boxing" class="form-control">{{ old('boxing') }}</textarea>
                                 </div>
@@ -48,6 +56,7 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Размер</label>
+
                                 <div class="col-md-6">
                                     <input name="size" type="text" class="form-control" value="{{ old('size') }}">
                                 </div>
@@ -55,17 +64,25 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Вес</label>
-                                <div class="col-md-6 input-group">
-                                    <input name="weight" type="number" class="form-control" value="{{ old('weight') }}">
-                                    <span class="input-group-addon"> кг.</span>
+
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input name="weight" type="number" class="form-control"
+                                               value="{{ old('weight') }}">
+                                        <span class="input-group-addon"> кг.</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Срок изготовления</label>
-                                <div class="col-md-6 input-group">
-                                    <input name="prod_time" type="number" class="form-control" value="{{ old('prod_time') }}">
-                                    <span class="input-group-addon">день</span>
+
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input name="prod_time" type="number" class="form-control"
+                                               value="{{ old('prod_time') }}">
+                                        <span class="input-group-addon">день</span>
+                                    </div>
                                 </div>
                             </div>
 

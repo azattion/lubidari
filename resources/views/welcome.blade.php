@@ -40,9 +40,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Контент</div>
                     <div class="panel-body">
-                        <div class="col-md-2" style="height: 500px;">
-                            Товар #<{'aaaa'}>
-                        </div>
+                        <div ng-view></div>
                     </div>
                 </div>
             </div>
