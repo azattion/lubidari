@@ -1,9 +1,11 @@
 <p ng-show="loading" class="text-center">Загружается....</p>
 
 <div class="row">
-    <div ng-repeat="one in data" class="col-md-2" style="height: 100px;">
-        <a href="#/<{one.id}>"><{one.title}></a>
-        <button class="btn btn-success">
+    <div ng-repeat="one in data" class="col-md-3">
+        <img ng-src="http://www.lubidari.ru/f/products_new/Glavnaja_middle_4280.jpg" width="130" height="auto">
+        <div><a href="#/<{one.id}>"><{one.title}></a></div>
+        <{one.price}>
+        <button class="btn btn-link">
             <span class="glyphicon glyphicon-shopping-cart"> Заказать</span>
         </button>
     </div>

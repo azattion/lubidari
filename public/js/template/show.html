@@ -1,8 +1,38 @@
 <div class="row">
-    <div class="col-md-2" style="height: 100px;" ng-show="prod.title">
-        <a href="#/<{prod.id}>"><{prod.title}></a>
-        <button class="btn btn-success">
-            <span class="glyphicon glyphicon-shopping-cart"> Заказать</span>
-        </button>
+    <div class="col-md-12" ng-show="prod.title">
+        <div class="col-md-12"><h2><{prod.title}></h2></div>
+        <div class="col-md-5">
+            <img ng-src="http://www.lubidari.ru/f/products_new/Glavnaja_middle_4280.jpg">
+        </div>
+        <div class="col-md-7">
+            <div class="col-md-12">
+                Цена: <{prod.price}> сом
+            </div>
+            <div class="col-md-12">
+                Описание: <{prod.desc}>
+            </div>
+            <div class="col-md-12">
+                Состав: <{prod.consist}>
+            </div>
+            <div class="col-md-12">
+                Упаковка: <{prod.boxing}>
+            </div>
+            <div class="col-md-12">
+                Размер: <{prod.size}>
+            </div>
+            <div class="col-md-12">
+                Вес: <{prod.weight}>
+            </div>
+            <div class="col-md-12">
+                Срок изготовления: <{prod.prod_time}>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12">
+                <button class="btn btn-success">
+                    <span class="glyphicon glyphicon-shopping-cart"> Заказать</span>
+                </button>
+            </div>
+        </div>
+
     </div>
 </div>

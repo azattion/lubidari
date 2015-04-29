@@ -16,9 +16,6 @@ controllers.controller('HomeCtrl', ['$scope', 'Service', '$window',
                     {type: 'danger', msg: 'Кечиресиз, жуктоо ийгиликсиз аяктады. Дагы аракет кылып корунуз'}
                 ];
                 $scope.loading = false;
-                $scope.close = function (index) {
-                    $scope.alerts.splice(index, 1);
-                };
             });
         } else {
             $scope.loading = false;
@@ -26,13 +23,23 @@ controllers.controller('HomeCtrl', ['$scope', 'Service', '$window',
         }
     }]);
 
-controllers.controller('ShowCtrl', ['$scope', 'ServiceId','$routeParams',
-    function ($scope, ServiceId, $routeParams) {
+controllers.controller('ShowCtrl', ['$scope', 'ServiceId','$routeParams','$window',
+    function ($scope, ServiceId, $routeParams, $window) {
         $scope.loading = true;
-        $scope.prod = ServiceId.show({id: $routeParams.id}, function () {
+        var data = JSON.parse($window.localStorage.getItem("data#"+$routeParams.id));
+        if (data == null || data == undefined) {
+            $scope.prod = ServiceId.show({id: $routeParams.id}, function () {
+                $scope.loading = false;
+                $window.localStorage.setItem("data#"+$routeParams.id, JSON.stringify($scope.prod));
+            }, function () {
+                $scope.loading = false;
+                $scope.alerts = [
+                    {type: 'danger', msg: 'Кечиресиз, жуктоо ийгиликсиз аяктады. Дагы аракет кылып корунуз'}
+                ];
+            });
+        } else {
             $scope.loading = false;
-        }, function () {
-            $scope.loading = false;
-        });
+            $scope.prod = data;
+        }
     }
 ]);
