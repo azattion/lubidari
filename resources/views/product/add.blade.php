@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin.app')
 
 @section('content')
     <div class="container-fluid">
@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Подарки/Добавить</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('product.store') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('administrator.product.store') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="form-group">
@@ -15,6 +15,20 @@
 
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Категория</label>
+                                <div class="col-md-6">
+                                    <select name="id_cat" class="form-control">
+                                        <option>Выберите категорию</option>
+                                        @if($category):
+                                        @foreach($category as $one)
+                                            <option value="{{$one->id}}">{{$one->title}}</option>
+                                        @endforeach
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
 
@@ -87,13 +101,23 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-md-4 control-label" for="">Картинки</label>
+                                <div class="col-md-6">
+                                    <input type="file" name="photo[]"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
                                         Добавить
                                     </button>
                                 </div>
                             </div>
+
                         </form>
+
+                        {{--var_dump($category)--}}
                     </div>
                 </div>
             </div>

@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Люби дари</title>
+@include('header')
 
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-
-    <!-- Fonts -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -34,19 +15,22 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/') }}">Главная</a></li>
-                <li><a href="{{ url('/product') }}">Товары</a></li>
-                <li><a href="{{ url('/order') }}">Заказы</a></li>
+                <li><a href="{{ route('admin') }}"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
+                <li><a href="{{ route('administrator.category.index') }}"><span class="glyphicon glyphicon-th"></span> Категории</a></li>
+                <li><a href="{{ route('administrator.product.index') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Товары</a></li>
+                <li><a href="{{ route('administrator.order.index') }}"><span class="glyphicon glyphicon-list-alt"></span> Заказы</a></li>
+                <li><a href="{{ route('administrator.photo.index') }}"><span class="glyphicon glyphicon-picture"></span> Картинки</a></li>
+                <li><a href="/statistic"><span class="glyphicon glyphicon-tasks"></span> Статистика</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" >
                 @if (Auth::guest())
                     <li><a href="{{ url('/auth/login') }}">Логин</a></li>
                     <li><a href="{{ url('/auth/register') }}">Регистрация</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                    <li dropdown>
+                        <a href="#" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                            Здравствуйте :  {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/auth/logout') }}">Выйти</a></li>
                         </ul>
@@ -61,7 +45,7 @@
         <div class="col-md-8 col-md-offset-2">
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <strong>Упппссс!</strong> При обработке данных ошибочка вышла<br><br>
+                    При обработке данных произашла ошибка<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -69,13 +53,15 @@
                     </ul>
                 </div>
             @endif
+                @if (Session::has('message'))
+                    <div class="alert alert-info">
+                        <p>{{ Session::get('message') }}</p>
+                    </div>
+                @endif
         </div>
     </div>
 </div>
+
 @yield('content')
 
-<!-- Scripts -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+@include('footer')

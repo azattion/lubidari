@@ -1,11 +1,11 @@
 <?php namespace App\Http\Controllers;
 
-class WelcomeController extends Controller
+class AdminController extends Controller
 {
 
     /*
     |--------------------------------------------------------------------------
-    | Welcome Controller
+    | Admin Controller
     |--------------------------------------------------------------------------
     |
     | This controller renders the "marketing page" for the application and
@@ -17,11 +17,10 @@ class WelcomeController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -31,7 +30,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        return view('admin.home');
     }
 
 

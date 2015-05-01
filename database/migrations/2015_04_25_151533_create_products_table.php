@@ -24,6 +24,8 @@ class CreateProductsTable extends Migration {
             $table->float('weight');
             $table->json('rating');
             $table->integer('prod_time');
+            $table->boolean('status');
+            $table->integer('id_cat');
 			$table->timestamps();
 		});
 	}

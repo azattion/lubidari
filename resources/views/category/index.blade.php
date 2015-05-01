@@ -10,10 +10,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Название</th>
-                        <th>Цена</th>
-                        <th>Размер</th>
-                        <th>Вес</th>
-                        <th>Создан</th>
+                        <th>Описание</th>
+                        <th>Ключевые слова</th>
                         <th>Функции</th>
                     </tr>
                     </thead>
@@ -21,17 +19,15 @@
                     @foreach($data as $one)
                         <tr>
                             <td>{{{$one->id}}}</td>
-                            <td><a href="{{{route('administrator.product.show',$one->id)}}}">{{{$one->title}}}</a></td>
-                            <td>{{{$one->price}}}</td>
-                            <td>{{{$one->size}}}</td>
-                            <td>{{{$one->weight}}}</td>
-                            <td>{{{$one->created_at}}}</td>
+                            <td>{{{$one->title}}}</td>
+                            <td>{{{$one->desc}}}</td>
+                            <td>{{{$one->keywords}}}</td>
                             <td>
                                 <div class="input-group">
-                                    <form action="{{route('administrator.product.destroy',$one->id)}}" method="POST" name="delete">
+                                    <form action="{{route('administrator.category.destroy',$one->id)}}" method="POST" name="delete">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                        <a href="{{route('administrator.product.edit',$one->id)}}"><span
+                                        <a href="{{route('administrator.category.edit',$one->id)}}"><span
                                                     class="glyphicon glyphicon-edit"></span></a>
                                         <button type="submit" class="btn btn-link"><span
                                                     class="glyphicon glyphicon-trash"></span></button>

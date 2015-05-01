@@ -23,6 +23,7 @@ class ProductRequest extends Request {
 	{
 		return [
             'title' => 'required|min:2|max:255',
+            'id_cat' => 'required|numeric',
             'price' => 'required|numeric',
             'consist' => 'required|min:2|max:255',
             'desc' => 'required|min:2|max:255',

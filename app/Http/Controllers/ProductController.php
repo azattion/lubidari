@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Response;
@@ -23,7 +24,8 @@ class ProductController extends Controller
      *
      *  @return Response
      */
-    public function listing(){
+    public function listing()
+    {
         $data = Product::all();
        return response()->json($data);
     }
@@ -35,7 +37,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.add');
+        $category = Category::all();
+        return view('product.add',compact('category'));
     }
 
     /**
@@ -46,7 +49,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         Product::create($request->all());
-        return redirect('product');
+        return redirect('product')->with('message', 'Запись успешно создана.') -> withInput ();
     }
 
     /**
@@ -94,7 +97,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product->update($request->all());
-        return redirect('product');
+        return redirect('product')->with('message', 'Запись успешно изменена.') -> withInput ();
     }
 
     /**
@@ -107,7 +110,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return redirect('product');
+        return redirect('product')->with('message', 'Запись успешно удалена.');
     }
 
 }

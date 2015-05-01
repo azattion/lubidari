@@ -16,9 +16,9 @@ class CreateOrdersTable extends Migration {
 		{
 			$table->increments('id');
             $table->integer('user_id');
-            $table->text('name');
-            $table->text('phone');
-            $table->text('address');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('address');
             $table->integer('options');
             $table->integer('count');
             $table->date('delivery_date');

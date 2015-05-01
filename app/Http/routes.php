@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', ['as'=>'home', 'uses' => 'HomeController@index']);
 
-Route::get('home', 'HomeController@index');
+Route::get('/administrator', ['as' => 'admin','uses'=>'AdminController@index']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -22,5 +22,10 @@ Route::controllers([
 
 Route::get('/product/list','ProductController@listing');
 Route::get('/product/show/{id}','ProductController@showAjax');
-Route::resource('product','ProductController');
-//Route::resource('order','OrderController');
+
+Route::group(['prefix' => 'administrator'], function(){
+    Route::resource('product','ProductController');
+    Route::resource('photo','PhotoController');
+    Route::resource('order','OrderController');
+    Route::resource('category','CategoryController');
+});
