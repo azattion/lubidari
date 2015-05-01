@@ -2,10 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 use PhpSpec\Exception\Exception;
+use App\Category;
 
 class Product extends Model
 {
-    protected $fillable = ['title', 'price', 'consist', 'desc', 'boxing', 'size', 'weight', 'prod_time'];
+    protected $fillable = ['title', 'id_cat', 'price', 'consist', 'desc', 'boxing', 'size', 'weight', 'prod_time'];
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
@@ -18,6 +19,6 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo('Category');
+        return $this->belongsTo('App\Category','id_cat');
     }
 }

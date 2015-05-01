@@ -33,5 +33,12 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function statistics()
+    {
+        return view('admin.statistics');
+    }
 
 }

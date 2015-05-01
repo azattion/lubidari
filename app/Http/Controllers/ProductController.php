@@ -4,6 +4,7 @@ use App\Category;
 use App\Product;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Response;
+use Symfony\Component\Console\Input\Input;
 
 class ProductController extends Controller
 {
@@ -48,8 +49,12 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $destinationPath = 'uploads';
+        $extension = Input::file('image')->getClientOriginalExtension();
+        $fileName = rand(11111,99999).'.'.$extension;
+        Input::file('image')->move($destinationPath, $fileName);
         Product::create($request->all());
-        return redirect('product')->with('message', 'Запись успешно создана.') -> withInput ();
+        return redirect('administrator/product')->with('message', 'Запись успешно создана.') -> withInput ();
     }
 
     /**
@@ -82,7 +87,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('product.edit', ['data' => Product::find($id)]);
+        $category = Category::all();
+        return view('product.edit', ['data' => Product::find($id),'category' => $category]);
     }
 
     /**
@@ -97,7 +103,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product->update($request->all());
-        return redirect('product')->with('message', 'Запись успешно изменена.') -> withInput ();
+        return redirect('administrator/product')->with('message', 'Запись успешно изменена.') -> withInput ();
     }
 
     /**
@@ -110,7 +116,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return redirect('product')->with('message', 'Запись успешно удалена.');
+        return redirect('administrator/product')->with('message', 'Запись успешно удалена.');
     }
 
 }

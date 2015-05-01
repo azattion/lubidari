@@ -7,7 +7,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Подарки/Добавить</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('administrator.product.store') }}">
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST"
+                              action="{{ route('administrator.product.store') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="form-group">
@@ -20,11 +21,16 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Категория</label>
+
                                 <div class="col-md-6">
                                     <select name="id_cat" class="form-control">
                                         <option>Выберите категорию</option>
                                         @if($category):
                                         @foreach($category as $one)
+                                            @if($one->id == old('id_cat'))
+                                                <option value="{{$one->id}}" selected>{{$one->title}}</option>
+                                                <?php continue?>
+                                            @endif
                                             <option value="{{$one->id}}">{{$one->title}}</option>
                                         @endforeach
                                         @endif
@@ -102,8 +108,9 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="">Картинки</label>
+
                                 <div class="col-md-6">
-                                    <input type="file" name="photo[]"/>
+                                    <input class="form-control" type="file" name="image[]" accept="image/*" multiple/>
                                 </div>
                             </div>
 

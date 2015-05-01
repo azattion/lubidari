@@ -15,12 +15,12 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('admin') }}"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
+                <li><a href="{{ route('adminHome') }}"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
                 <li><a href="{{ route('administrator.category.index') }}"><span class="glyphicon glyphicon-th"></span> Категории</a></li>
                 <li><a href="{{ route('administrator.product.index') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Товары</a></li>
                 <li><a href="{{ route('administrator.order.index') }}"><span class="glyphicon glyphicon-list-alt"></span> Заказы</a></li>
                 <li><a href="{{ route('administrator.photo.index') }}"><span class="glyphicon glyphicon-picture"></span> Картинки</a></li>
-                <li><a href="/statistic"><span class="glyphicon glyphicon-tasks"></span> Статистика</a></li>
+                <li><a href="{{ route('adminStat') }}"><span class="glyphicon glyphicon-tasks"></span> Статистика</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" >
@@ -40,12 +40,13 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="AlertController">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    При обработке данных произашла ошибка<br><br>
+                <div class="alert alert-danger" ng-init="alert=1" ng-show="alert">
+                    <button type="button" class="close" ng-click="alert=0" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <span class="glyphicon glyphicon-warning-sign"></span>  При обработке данных произашла ошибка<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -54,8 +55,9 @@
                 </div>
             @endif
                 @if (Session::has('message'))
-                    <div class="alert alert-info">
-                        <p>{{ Session::get('message') }}</p>
+                    <div class="alert alert-info" ng-init="alert=true" ng-show="alert">
+                        <button type="button" class="close" ng-click="alert=false" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <p><span class="glyphicon glyphicon-bell"></span> {{ Session::get('message') }}</p>
                     </div>
                 @endif
         </div>

@@ -30,7 +30,8 @@ class ProductRequest extends Request {
             'boxing' => 'required|min:2|max:255',
             'size' => 'required|min:2|max:255',
             'weight' => 'required|numeric',
-            'prod_time' => 'required|numeric'
+            'prod_time' => 'required|numeric',
+            'image' => 'required|image|max:4000'
 		];
 	}
 

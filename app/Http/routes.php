@@ -13,7 +13,11 @@
 
 Route::get('/', ['as'=>'home', 'uses' => 'HomeController@index']);
 
-Route::get('/administrator', ['as' => 'admin','uses'=>'AdminController@index']);
+Route::group(['prefix' => 'administrator'], function(){
+    Route::get('/',['as' => 'adminHome','uses' => 'AdminController@index']);
+    Route::get('/statistics',['as' => 'adminStat','uses' =>'AdminController@statistics']);
+});
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

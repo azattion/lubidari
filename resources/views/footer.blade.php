@@ -1,7 +1,8 @@
+<hr/>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="col-md-12">© 2010-2015, ЛюбиДари — эксклюзивные подарки и игрушки из живых цветов</div>
+            <div class="col-md-12">© 2015, ЛюбиДари — эксклюзивные подарки и игрушки из живых цветов</div>
         </div>
     </div>
 </div>
