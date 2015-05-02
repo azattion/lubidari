@@ -3,7 +3,9 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Photo;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class PhotoController extends Controller {
 
@@ -27,14 +29,30 @@ class PhotoController extends Controller {
 		//
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+
+    public function upload(Requests\PhotoRequest $request){
+        $destinationPath = 'uploads';
+       // $extension = Input::file('image')->getClientOriginalExtension();
+       // $fileName = rand(11111,99999).'.'.$extension;
+       // Input::file('image')->move($destinationPath);
+        $imageName = date('Ymd').$request->file('image')->getClientOriginalExtension();
+
+        $request->file('image')->move(
+            base_path() . '/public/images/catalog/', $imageName
+        );
+        return '4545';
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Requests\PhotoRequest $request
+     * @return Response
+     */
+	public function store(Requests\PhotoRequest $request)
 	{
-		//
+        Photo::create($request->all());
+        return true;
 	}
 
 	/**

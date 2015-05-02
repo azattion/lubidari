@@ -1,12 +1,43 @@
 @import "bootstrap/bootstrap";
 
 @btn-font-weight: 300;
-@font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
+@font-family-sans-serif: 'Source Sans Pro',sans-serif;;
 
 body, label, .checkbox label {
 	font-weight: 300;
 }
 
-#admin{
+body{
   background: #ECF0F5;
+}
+
+#admin{
+  margin-left: 230px;
+  padding-top: 20px;
+}
+
+.main-sidebar, .left-side {
+  a{
+    color: #B8C7CE;
+    padding: 12px 5px 12px 15px;
+    display: block;
+  }
+  li>a {
+    border-left: 3px solid rgba(0, 0, 0, 0);
+    margin-right: 1px
+  }
+  li>a:hover,li.active>a {
+    color: #FFF;
+    background: #1E282C;
+    border-left-color: #3C8DBC;
+    text-decoration: none;
+  }
+  background: #222D32;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 60px;
+  min-height: 100%;
+  width: 230px;
+  z-index: 810;
 }

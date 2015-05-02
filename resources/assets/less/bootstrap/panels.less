@@ -6,22 +6,25 @@
 // Base class
 .panel {
   margin-bottom: @line-height-computed;
-  background-color: @panel-bg;
-  border: 1px solid transparent;
+  background-color: transparent;
   border-radius: 0;
-  .box-shadow(0 1px 1px rgba(0,0,0,.05));
 }
 
 // Panel contents
 .panel-body {
   padding: @panel-body-padding;
   &:extend(.clearfix all);
+  background-color: @panel-bg;
+  border: 1px solid transparent;
+  .box-shadow(0 1px 1px rgba(0,0,0,.05));
+  border-radius: 3px;
 }
 
 // Optional heading
 .panel-heading {
   padding: @panel-heading-padding;
   border-bottom: 1px solid transparent;
+  font-size: ceil((@font-size-base * 1.5));
 
   > .dropdown .dropdown-toggle {
     color: inherit;
@@ -241,6 +244,12 @@
 
 // Contextual variations
 .panel-default {
+  .panel-heading{
+    padding: 10px 15px 10px 0;
+  }
+  .panel-body{
+    border-top: 3px solid #D2D6DE;
+  }
   .panel-variant(@panel-default-border; @panel-default-text; @panel-default-heading-bg; @panel-default-border);
 }
 .panel-primary {

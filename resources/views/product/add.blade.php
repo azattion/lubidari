@@ -3,19 +3,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        Header
-                    </div>
-                    <div class="panel-body">
-                        All
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Подарки/Добавить</div>
+                    <div class="panel-heading">Подарки</div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST"
                               action="{{ route('administrator.product.store') }}">
@@ -62,21 +52,21 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Состав</label>
-                                        <textarea popover="Состав товара" popover-trigger="focus" class="form-control"
+                                        <textarea rows="3" popover="Состав товара" popover-trigger="focus" class="form-control"
                                                   name="consist">{{ old('consist') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Описание</label>
-                                        <textarea name="desc" popover="Краткое описание товару" popover-trigger="focus"
+                                        <textarea rows="3" name="desc" popover="Краткое описание товару" popover-trigger="focus"
                                                   class="form-control">{{ old('desc') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Упаковка</label>
-                                        <textarea name="boxing" popover="Упаковка товара" popover-trigger="focus"
+                                        <textarea rows="3" name="boxing" popover="Упаковка товара" popover-trigger="focus"
                                                   class="form-control">{{ old('boxing') }}</textarea>
                                     </div>
                                 </div>
@@ -217,10 +207,10 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="col-md-4 col-md-offset-4">
-                                            <button type="submit" class="btn btn-primary btn-lg">
+                                            <button type="submit" class="btn btn-primary">
                                                 <span class="glyphicon glyphicon-ok"></span> Добавить
                                             </button>
-                                            <a class="btn btn-default btn-lg"
+                                            <a class="btn btn-default"
                                                href="{{route('administrator.product.index')}}">
                                                 <span class="glyphicon glyphicon-ban-circle"></span> Отмена</a>
                                         </div>

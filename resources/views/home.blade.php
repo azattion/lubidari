@@ -49,4 +49,10 @@
     </div>
 </div>
 
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center">© 2015, ЛюбиДари — эксклюзивные подарки и игрушки из живых цветов</div>
+    </div>
+</div>
 @include('footer')

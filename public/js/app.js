@@ -12,6 +12,21 @@ var genealogy = angular.module('lubidariApp', [
         $interpolateProvider.startSymbol('<{').endSymbol('}>');
     });
 
+var csrftoken =  (function() {
+    // not need Jquery for doing that
+    var metas = window.document.getElementsByTagName('meta');
+
+    // finding one has csrf token
+    for(var i=0 ; i < metas.length ; i++) {
+
+        if ( metas[i].name === "csrf-token") {
+
+            return  metas[i].content;
+        }
+    }
+
+})();
+genealogy.constant('CSRF_TOKEN', csrftoken);
 
 genealogy.config(['$routeProvider',
     function ($routeProvider) {
@@ -75,11 +90,14 @@ controllers.controller('ShowCtrl', ['$scope', 'ServiceId', '$routeParams', '$win
 ]);
 
 controllers.controller('UploadController', ['$scope', 'FileUploader', function($scope, FileUploader) {
+    var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     var uploader = $scope.uploader = new FileUploader({
-        url: 'upload.php'
-    });
-
-    // FILTERS
+        url: '/administrator/photo/upload',
+        headers : {
+            'X-CSRF-TOKEN' : CSRF_TOKEN // X-CSRF-TOKEN is used for Ruby on Rails Tokens
+        }
+   });
+// FILTERS
 
     uploader.filters.push({
         name: 'customFilter',

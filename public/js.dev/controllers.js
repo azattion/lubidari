@@ -46,7 +46,7 @@ controllers.controller('ShowCtrl', ['$scope', 'ServiceId', '$routeParams', '$win
 
 controllers.controller('UploadController', ['$scope', 'FileUploader', function($scope, FileUploader) {
     var uploader = $scope.uploader = new FileUploader({
-        url: 'upload.php'
+        url: '/administrator/photo/upload'
     });
 
     // FILTERS

@@ -28,17 +28,16 @@
                                 <td>{{{$one->weight}}}</td>
                                 <td>{{{$one->created_at}}}</td>
                                 <td>
-                                    <div class="input-group">
-                                        <form action="{{route('administrator.product.destroy',$one->id)}}" method="POST"
-                                              name="delete">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                            <a href="{{route('administrator.product.edit',$one->id)}}"><span
-                                                        class="glyphicon glyphicon-edit"></span></a>
-                                            <button type="submit" class="btn btn-link"><span
-                                                        class="glyphicon glyphicon-trash"></span></button>
-                                        </form>
-                                    </div>
+                                    <form action="{{route('administrator.product.destroy',$one->id)}}" method="POST"
+                                          name="delete">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                        <a href="{{route('administrator.product.edit',$one->id)}}"
+                                           class="btn btn-link btn-sm"><span
+                                                    class="glyphicon glyphicon-edit"></span></a>
+                                        <button type="submit" class="btn btn-link btn-sm"><span
+                                                    class="glyphicon glyphicon-trash"></span></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

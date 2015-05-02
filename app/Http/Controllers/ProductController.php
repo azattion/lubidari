@@ -49,10 +49,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $destinationPath = 'uploads';
-        $extension = Input::file('image')->getClientOriginalExtension();
-        $fileName = rand(11111,99999).'.'.$extension;
-        Input::file('image')->move($destinationPath, $fileName);
         Product::create($request->all());
         return redirect('administrator/product')->with('message', 'Запись успешно создана.') -> withInput ();
     }
