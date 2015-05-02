@@ -5,7 +5,8 @@ var genealogy = angular.module('lubidariApp', [
         'ngRoute',
         'ProdService',
         'Controllers',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'angularFileUpload'
     ],
     function ($interpolateProvider) {
         $interpolateProvider.startSymbol('<{').endSymbol('}>');

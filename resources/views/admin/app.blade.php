@@ -63,7 +63,9 @@
         </div>
     </div>
 </div>
+<div id="admin">
+    @yield('content')
+</div>
 
-@yield('content')
 
 @include('footer')
