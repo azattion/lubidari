@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration {
             $table->integer('prod_time');
             $table->boolean('status');
             $table->integer('id_cat');
-			$table->timestamps();
+            $table->timestamps();
 		});
 	}
 

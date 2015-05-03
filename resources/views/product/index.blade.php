@@ -25,7 +25,7 @@
                                 </td>
                                 <td>{{{$one->price}}}</td>
                                 <td>{{{$one->size}}}</td>
-                                <td>{{{$one->weight}}}</td>
+                                <td>{{{round($one->weight,2)}}}</td>
                                 <td>{{{$one->created_at}}}</td>
                                 <td>
                                     <form action="{{route('administrator.product.destroy',$one->id)}}" method="POST"

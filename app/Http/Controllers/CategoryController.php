@@ -36,7 +36,7 @@ class CategoryController extends Controller {
 	public function store(Requests\CategoryRequest $request)
 	{
         Category::create($request->all());
-        return redirect('category');
+        return redirect('/administrator/category');
 	}
 
 	/**
@@ -72,7 +72,7 @@ class CategoryController extends Controller {
 	{
         $product = Category::findOrFail($id);
         $product->update($request->all());
-        return redirect('category');
+        return redirect('administrator/category');
 	}
 
 	/**

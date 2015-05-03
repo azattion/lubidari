@@ -12,21 +12,6 @@ var genealogy = angular.module('lubidariApp', [
         $interpolateProvider.startSymbol('<{').endSymbol('}>');
     });
 
-var csrftoken =  (function() {
-    // not need Jquery for doing that
-    var metas = window.document.getElementsByTagName('meta');
-
-    // finding one has csrf token
-    for(var i=0 ; i < metas.length ; i++) {
-
-        if ( metas[i].name === "csrf-token") {
-
-            return  metas[i].content;
-        }
-    }
-
-})();
-genealogy.constant('CSRF_TOKEN', csrftoken);
 
 genealogy.config(['$routeProvider',
     function ($routeProvider) {
@@ -89,14 +74,22 @@ controllers.controller('ShowCtrl', ['$scope', 'ServiceId', '$routeParams', '$win
     }
 ]);
 
+controllers.controller('TypeaheadCtrl', function($scope) {
+
+    $scope.selected = undefined;
+    $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+});
+
 controllers.controller('UploadController', ['$scope', 'FileUploader', function($scope, FileUploader) {
     var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
     var uploader = $scope.uploader = new FileUploader({
-        url: '/administrator/photo/upload',
+        url: '/administrator/photo',
         headers : {
-            'X-CSRF-TOKEN' : CSRF_TOKEN // X-CSRF-TOKEN is used for Ruby on Rails Tokens
-        }
-   });
+            'X-CSRF-TOKEN' : CSRF_TOKEN
+        },
+        photo: ''
+    });
 // FILTERS
 
     uploader.filters.push({
@@ -127,6 +120,7 @@ controllers.controller('UploadController', ['$scope', 'FileUploader', function($
         console.info('onProgressAll', progress);
     };
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        uploader.photo = uploader.photo + response+',';
         console.info('onSuccessItem', fileItem, response, status, headers);
     };
     uploader.onErrorItem = function(fileItem, response, status, headers) {

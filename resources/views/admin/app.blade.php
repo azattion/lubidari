@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{route('adminHome')}}">Люби-Дари - Админ панель</a>
+            <a class="navbar-brand" href="{{route('adminHome')}}">Админ панель</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -33,6 +33,7 @@
 </nav>
 
 <aside class="main-sidebar">
+    <h3>Меню</h3>
     <section class="sidebar">
         <ul class="list-unstyled">
 

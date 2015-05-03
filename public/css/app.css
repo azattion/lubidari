@@ -6241,6 +6241,9 @@ label,
 body {
   background: #ECF0F5;
 }
+table {
+  font-size: 13px;
+}
 #admin {
   margin-left: 230px;
   padding-top: 20px;
@@ -6251,7 +6254,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: 60px;
+  padding-top: 0px;
   min-height: 100%;
   width: 230px;
   z-index: 810;
@@ -6261,6 +6264,11 @@ body {
   color: #B8C7CE;
   padding: 12px 5px 12px 15px;
   display: block;
+}
+.main-sidebar h3,
+.left-side h3 {
+  margin-left: 15px;
+  color: #fff;
 }
 .main-sidebar li > a,
 .left-side li > a {

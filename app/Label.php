@@ -2,15 +2,16 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Photo extends Model {
+class Label extends Model {
 
     /**
      * @var array
      */
-	protected $fillable = ['id_prod','title','filename', 'url'];
+    protected $fillable = ['title','id_cat'];
 
     /**
      * @var array
      */
     protected $guarded = ['id','created_at','updated_at'];
+
 }

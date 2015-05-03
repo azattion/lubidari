@@ -15,15 +15,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Название</label>
-                                        <input type="text" popover="Название товара" popover-trigger="focus"
+                                        <input min="2" max="255" required type="text" popover="Название товара" popover-trigger="focus"
                                                class="form-control" name="title" value="{{ old('title') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Категория</label>
-                                        <select name="id_cat" class="form-control">
-                                            <option>Выберите категорию</option>
+                                        <select name="id_cat" class="form-control" required>
                                             @if($category):
                                             @foreach($category as $one)
                                                 @if($one->id == old('id_cat'))
@@ -41,7 +40,7 @@
                                         <label class="control-label">Цена</label>
 
                                         <div class="input-group">
-                                            <input type="number" popover="Цена товара в нац валюте"
+                                            <input min="1" required type="number" popover="Цена товара в нац валюте"
                                                    popover-trigger="focus" class="form-control" name="price"
                                                    value="{{ old('price') }}">
                                             <span class="input-group-addon">сом</span>
@@ -52,21 +51,21 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Состав</label>
-                                        <textarea rows="3" popover="Состав товара" popover-trigger="focus" class="form-control"
+                                        <textarea min="2" max="255" required rows="3" popover="Состав товара" popover-trigger="focus" class="form-control"
                                                   name="consist">{{ old('consist') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Описание</label>
-                                        <textarea rows="3" name="desc" popover="Краткое описание товару" popover-trigger="focus"
+                                        <textarea min="2" max="255" required rows="3" name="desc" popover="Краткое описание товару" popover-trigger="focus"
                                                   class="form-control">{{ old('desc') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Упаковка</label>
-                                        <textarea rows="3" name="boxing" popover="Упаковка товара" popover-trigger="focus"
+                                        <textarea min="2" max="255" required rows="3" name="boxing" popover="Упаковка товара" popover-trigger="focus"
                                                   class="form-control">{{ old('boxing') }}</textarea>
                                     </div>
                                 </div>
@@ -74,7 +73,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Размер</label>
-                                        <input popover="Размер высоты, ширины и длины" popover-trigger="focus"
+                                        <input min="2" max="255" required popover="Размер высоты, ширины и длины" popover-trigger="focus"
                                                name="size" type="text" placeholder="например 12 * 12 * 45 "
                                                class="form-control" value="{{ old('size') }}">
                                     </div>
@@ -84,10 +83,10 @@
                                         <label class="control-label">Вес</label>
 
                                         <div class="input-group">
-                                            <input popover="Вес товара. Можно указать плавающяя числа"
-                                                   popover-trigger="focus" name="weight" type="number"
+                                            <input required popover="Вес товара. Можно указать плавающяя числа"
+                                                   popover-trigger="focus" min="1" max="100" name="weight" type="number"
                                                    class="form-control"
-                                                   value="{{ old('weight') }}">
+                                                   value="{{ old('weight') }}" step="any">
                                             <span class="input-group-addon"> кг.</span>
                                         </div>
                                     </div>
@@ -98,8 +97,8 @@
                                         <label class="control-label">Срок изготовления</label>
 
                                         <div class="input-group">
-                                            <input popover="Срок изготовления. Единица измерения  день"
-                                                   popover-trigger="focus" name="prod_time" type="number"
+                                            <input required popover="Срок изготовления. Единица измерения  день"
+                                                   popover-trigger="focus" min="1" max="10" name="prod_time" type="number"
                                                    class="form-control"
                                                    value="{{ old('prod_time') }}">
                                             <span class="input-group-addon">день</span>
@@ -108,9 +107,10 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <lanel>Метки</lanel>
-                                        <input type="text" class="form-control" popover="Метки"
+                                    <div class="form-group" ng-controller="TypeaheadCtrl">
+                                        <pre><input type="text" name="rofield" ng-value="selected" readonly="readonly" /></pre>
+                                        <label>Метки</label>
+                                        <input ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" required type="text" class="form-control" popover="Метки"
                                                popover-trigger="focus"/>
                                     </div>
                                 </div>
@@ -119,29 +119,28 @@
                                 <hr/>
                                 <div class="col-md-12">
                                     <div class="form-group" ng-controller="UploadController">
-                                        <label for="">Картинки</label>
+                                        <input type="hidden" name="photo" ng-init="uploader.photo" value="<{uploader.photo}>">
+                                        <label>Картинки</label>
                                         <input type="file" nv-file-select uploader="uploader" multiple/><br/>
                                         <ul>
                                             <li ng-repeat="item in uploader.queue">
-                                                Name: <span ng-bind="item.file.name"></span><br/>
-                                                <button ng-click="item.upload()">upload</button>
+                                                Название: <span ng-bind="item.file.name"></span>
                                             </li>
                                         </ul>
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th width="50%">Name</th>
-                                                <th ng-show="uploader.isHTML5">Size</th>
-                                                <th ng-show="uploader.isHTML5">Progress</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
+                                                <th width="50%">Название</th>
+                                                <th ng-show="uploader.isHTML5">Размер</th>
+                                                <th ng-show="uploader.isHTML5">Прогресс</th>
+                                                <th>Статус</th>
+                                                <th>Функции</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr ng-repeat="item in uploader.queue">
-                                                <td><strong><{ item.file.name }></strong></td>
-                                                <td ng-show="uploader.isHTML5" nowrap><{
-                                                    item.file.size/1024/1024|number:2 }> MB
+                                                <td><{ item.file.name }></td>
+                                                <td ng-show="uploader.isHTML5" nowrap><{item.file.size/1024/1024|number:2 }> MB
                                                 </td>
                                                 <td ng-show="uploader.isHTML5">
                                                     <div class="progress" style="margin-bottom: 0;">
@@ -161,16 +160,16 @@
                                                     <button type="button" class="btn btn-success btn-xs"
                                                             ng-click="item.upload()"
                                                             ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                                        <span class="glyphicon glyphicon-upload"></span> Загрузить
                                                     </button>
                                                     <button type="button" class="btn btn-warning btn-xs"
                                                             ng-click="item.cancel()"
                                                             ng-disabled="!item.isUploading">
-                                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                        <span class="glyphicon glyphicon-ban-circle"></span> Отменить
                                                     </button>
                                                     <button type="button" class="btn btn-danger btn-xs"
                                                             ng-click="item.remove()">
-                                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                                        <span class="glyphicon glyphicon-trash"></span> Удалить
                                                     </button>
                                                 </td>
                                             </tr>
@@ -179,7 +178,7 @@
 
                                         <div>
                                             <div>
-                                                Queue progress:
+                                                Прогресс:
                                                 <div class="progress" style="">
                                                     <div class="progress-bar" role="progressbar"
                                                          ng-style="{ 'width': uploader.progress + '%' }"></div>
@@ -193,12 +192,12 @@
                                             <button type="button" class="btn btn-link btn-s"
                                                     ng-click="uploader.cancelAll()"
                                                     ng-disabled="!uploader.isUploading">
-                                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                                <span class="glyphicon glyphicon-ban-circle"></span> Отменить все
                                             </button>
                                             <button type="button" class="btn btn-link btn-s"
                                                     ng-click="uploader.clearQueue()"
                                                     ng-disabled="!uploader.queue.length">
-                                                <span class="glyphicon glyphicon-trash"></span> Remove all
+                                                <span class="glyphicon glyphicon-trash"></span> Удалить все
                                             </button>
                                         </div>
                                     </div>
@@ -207,7 +206,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="col-md-4 col-md-offset-4">
-                                            <button type="submit" class="btn btn-primary">
+                                             <button type="submit" class="btn btn-primary">
                                                 <span class="glyphicon glyphicon-ok"></span> Добавить
                                             </button>
                                             <a class="btn btn-default"

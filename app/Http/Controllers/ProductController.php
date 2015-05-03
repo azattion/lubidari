@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Category;
+use App\Photo;
 use App\Product;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Response;
@@ -49,7 +50,16 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        Product::create($request->all());
+        $product = Product::create($request->all());
+        if($request->photo){
+            $request->photo = rtrim($request->photo, ",");
+            $photoArr = explode(",", $request->photo);
+            foreach($photoArr as $one){
+                $photo = Photo::find($one);
+                $photo->id_prod = $product->id;
+                $photo->save();
+            }
+        }
         return redirect('administrator/product')->with('message', 'Запись успешно создана.') -> withInput ();
     }
 

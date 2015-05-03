@@ -28,7 +28,6 @@ Route::get('/product/list','ProductController@listing');
 Route::get('/product/show/{id}','ProductController@showAjax');
 
 Route::group(['prefix' => 'administrator'], function(){
-    Route::post('photo/upload','PhotoController@upload');
     Route::resource('product','ProductController');
     Route::resource('photo','PhotoController');
     Route::resource('order','OrderController');
