@@ -4,6 +4,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                <div class="col-md-12">
+                    <a class="btn btn-success" href="{{route('administrator.category.create')}}">
+                        <span class="glyphicon glyphicon-plus"></span> Добавить категорию
+                    </a>
+                </div>
+                <hr/>
                 @if(count($data)>0)
                 <table class="table table-hover">
                     <thead>

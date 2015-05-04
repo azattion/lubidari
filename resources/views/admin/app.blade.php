@@ -33,7 +33,7 @@
 </nav>
 
 <aside class="main-sidebar">
-    <h3>Меню</h3>
+    <h3>Навигация</h3>
     <section class="sidebar">
         <ul class="list-unstyled">
 
@@ -41,8 +41,10 @@
             </li>
             <li><a href="{{ route('administrator.category.index') }}"><span
                             class="glyphicon glyphicon-th"></span>  Категории товаров</a></li>
+            <li><a href="{{ route('administrator.label.index') }}"><span
+                            class="glyphicon glyphicon-tags"></span>     Метки</a></li>
             <li><a href="{{ route('administrator.product.index') }}"><span
-                            class="glyphicon glyphicon-shopping-cart"></span>  Товары</a></li>
+                            class="glyphicon glyphicon-shopping-cart"></span> Товары</a></li>
             <li><a href="{{ route('administrator.order.index') }}"><span
                             class="glyphicon glyphicon-list-alt"></span>  Заказы</a></li>
             <li><a href="{{ route('administrator.photo.index') }}"><span

@@ -1,11 +1,14 @@
 <?php namespace App\Http\Controllers;
 
 use App\Category;
+use App\Label;
 use App\Photo;
 use App\Product;
 use App\Http\Requests\ProductRequest;
+use App\ProductLabel;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -40,7 +43,11 @@ class ProductController extends Controller
     public function create()
     {
         $category = Category::all();
-        return view('product.add',compact('category'));
+        $label = [];
+        $label[1] = Label::where("id_cat",1)->get();
+        $label[2] = Label::where("id_cat",2)->get();
+        $label[3] = Label::where("id_cat",3)->get();
+        return view('product.add',compact('category','label'));
     }
 
     /**
@@ -58,6 +65,12 @@ class ProductController extends Controller
                 $photo = Photo::find($one);
                 $photo->id_prod = $product->id;
                 $photo->save();
+            }
+        }
+        if($request->label){
+            foreach($request->label as $one){
+                $data=['id_prod' => $product->id,'id_lab' => $one];
+                ProductLabel::create($data);
             }
         }
         return redirect('administrator/product')->with('message', 'Запись успешно создана.') -> withInput ();

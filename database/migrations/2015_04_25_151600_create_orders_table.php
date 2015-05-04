@@ -24,6 +24,8 @@ class CreateOrdersTable extends Migration {
             $table->date('delivery_date');
             $table->dateTime('delivery_time');
             $table->text('desc');
+            $table->integer('total');
+            $table->boolean('status');
 			$table->timestamps();
 		});
 	}

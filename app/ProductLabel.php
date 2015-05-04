@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductLabel extends Model {
 
+   public $timestamps = false;
     /**
      * @var array
      */

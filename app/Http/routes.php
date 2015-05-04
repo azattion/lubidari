@@ -29,6 +29,7 @@ Route::get('/product/show/{id}','ProductController@showAjax');
 
 Route::group(['prefix' => 'administrator'], function(){
     Route::resource('product','ProductController');
+    Route::resource('label','LabelController');
     Route::resource('photo','PhotoController');
     Route::resource('order','OrderController');
     Route::resource('category','CategoryController');

@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration {
 			$table->increments('id');
             $table->string('title');
             $table->integer('price');
+            $table->integer('sale');
             $table->string('desc');
             $table->string('consist');
             $table->string('boxing');

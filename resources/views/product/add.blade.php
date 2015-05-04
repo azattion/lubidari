@@ -15,7 +15,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Название</label>
-                                        <input min="2" max="255" required type="text" popover="Название товара" popover-trigger="focus"
+                                        <input min="2" max="255" required type="text" popover="Название товара"
+                                               popover-trigger="focus"
                                                class="form-control" name="title" value="{{ old('title') }}">
                                     </div>
                                 </div>
@@ -51,21 +52,24 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Состав</label>
-                                        <textarea min="2" max="255" required rows="3" popover="Состав товара" popover-trigger="focus" class="form-control"
+                                        <textarea min="2" max="255" required rows="3" popover="Состав товара"
+                                                  popover-trigger="focus" class="form-control"
                                                   name="consist">{{ old('consist') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Описание</label>
-                                        <textarea min="2" max="255" required rows="3" name="desc" popover="Краткое описание товару" popover-trigger="focus"
+                                        <textarea min="2" max="255" required rows="3" name="desc"
+                                                  popover="Краткое описание товару" popover-trigger="focus"
                                                   class="form-control">{{ old('desc') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Упаковка</label>
-                                        <textarea min="2" max="255" required rows="3" name="boxing" popover="Упаковка товара" popover-trigger="focus"
+                                        <textarea min="2" max="255" required rows="3" name="boxing"
+                                                  popover="Упаковка товара" popover-trigger="focus"
                                                   class="form-control">{{ old('boxing') }}</textarea>
                                     </div>
                                 </div>
@@ -73,7 +77,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Размер</label>
-                                        <input min="2" max="255" required popover="Размер высоты, ширины и длины" popover-trigger="focus"
+                                        <input min="2" max="255" required popover="Размер высоты, ширины и длины"
+                                               popover-trigger="focus"
                                                name="size" type="text" placeholder="например 12 * 12 * 45 "
                                                class="form-control" value="{{ old('size') }}">
                                     </div>
@@ -98,20 +103,53 @@
 
                                         <div class="input-group">
                                             <input required popover="Срок изготовления. Единица измерения  день"
-                                                   popover-trigger="focus" min="1" max="10" name="prod_time" type="number"
+                                                   popover-trigger="focus" min="1" max="10" name="prod_time"
+                                                   type="number"
                                                    class="form-control"
                                                    value="{{ old('prod_time') }}">
                                             <span class="input-group-addon">день</span>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12">
-                                    <div class="form-group" ng-controller="TypeaheadCtrl">
-                                        <pre><input type="text" name="rofield" ng-value="selected" readonly="readonly" /></pre>
-                                        <label>Метки</label>
-                                        <input ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" required type="text" class="form-control" popover="Метки"
-                                               popover-trigger="focus"/>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Праздник</label>
+                                            @foreach($label[1] as $one)
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="label[]"
+                                                               value="{{$one->id}}"/> {{{$one->title}}}
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Кому дарить?</label>
+                                            @foreach($label[2] as $one)
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="label[]"
+                                                               value="{{$one->id}}"/> {{{$one->title}}}
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Цвет композиции</label>
+                                            @foreach($label[3] as $one)
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="label[]"
+                                                               value="{{$one->id}}"/> {{{$one->title}}}
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
 
@@ -119,7 +157,8 @@
                                 <hr/>
                                 <div class="col-md-12">
                                     <div class="form-group" ng-controller="UploadController">
-                                        <input type="hidden" name="photo" ng-init="uploader.photo" value="<{uploader.photo}>">
+                                        <input type="hidden" name="photo" ng-init="uploader.photo"
+                                               value="<{uploader.photo}>">
                                         <label>Картинки</label>
                                         <input type="file" nv-file-select uploader="uploader" multiple/><br/>
                                         <ul>
@@ -140,7 +179,8 @@
                                             <tbody>
                                             <tr ng-repeat="item in uploader.queue">
                                                 <td><{ item.file.name }></td>
-                                                <td ng-show="uploader.isHTML5" nowrap><{item.file.size/1024/1024|number:2 }> MB
+                                                <td ng-show="uploader.isHTML5" nowrap>
+                                                    <{item.file.size/1024/1024|number:2 }> MB
                                                 </td>
                                                 <td ng-show="uploader.isHTML5">
                                                     <div class="progress" style="margin-bottom: 0;">
@@ -206,7 +246,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="col-md-4 col-md-offset-4">
-                                             <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary">
                                                 <span class="glyphicon glyphicon-ok"></span> Добавить
                                             </button>
                                             <a class="btn btn-default"

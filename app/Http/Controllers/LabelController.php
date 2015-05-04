@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Label;
 use Illuminate\Http\Request;
 
 class LabelController extends Controller {
@@ -14,7 +15,9 @@ class LabelController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$data = Label::paginate(50);
+        $cat = Label::$category;
+        return view('label.index', compact('data','cat'));
 	}
 
 	/**
@@ -24,17 +27,19 @@ class LabelController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('label.add');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Requests\LabelRequest $request
+     * @return Response
+     */
+	public function store(Requests\LabelRequest $request)
 	{
-		//
+		Label::create($request->all());
+        return redirect('administrator/label')->with('message', 'Запись успешно изменена.') -> withInput ();
 	}
 
 	/**
@@ -43,10 +48,10 @@ class LabelController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	/*public function show($id)
 	{
 		//
-	}
+	}*/
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -56,19 +61,23 @@ class LabelController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $data = Label::findOrFail($id);
+		return view('label.edit', compact('data'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @param Requests\LabelRequest $request
+     * @return Response
+     */
+	public function update($id, Requests\LabelRequest $request)
 	{
-		//
-	}
+        $label = Label::findOrFail($id);
+        $label->update($request->all());
+        return redirect('administrator/label')->with('message', 'Запись успешно изменена.') -> withInput ();
+    }
 
 	/**
 	 * Remove the specified resource from storage.
@@ -78,7 +87,10 @@ class LabelController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
-	}
+        $label = Label::findOrFail($id);
+        $label->delete();
+        return redirect('administrator/label')->with('message', 'Запись успешно удалена.');
+
+    }
 
 }
