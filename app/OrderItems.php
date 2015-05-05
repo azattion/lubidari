@@ -6,6 +6,11 @@ class OrderItems extends Model
 {
 
     /**
+     * @var string
+     */
+    public $table = 'order_items';
+
+    /**
      * @var array
      */
     protected $fillable = ['is_user', 'id_order', 'id_prod'];

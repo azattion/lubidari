@@ -21,8 +21,12 @@
             </div>
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-shopping-cart"></span> Корзина</div>
-                    <div class="panel-body">Содержание</div>
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Корзина</div>
+                    <div class="panel-body">
+                        <a href="#/cart">Корзина</a>
+                        <a href="#/to-order">Оформить заказ</a>
+                    </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">Фотографии доставок</div>

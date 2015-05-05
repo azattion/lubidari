@@ -44,6 +44,14 @@ controllers.controller('ShowCtrl', ['$scope', 'ServiceId', '$routeParams', '$win
     }
 ]);
 
+controllers.controller('OrderCtrl',['$scope', function($scope){
+    return $scope;
+}]);
+
+controllers.controller('CartCtrl',['$scope', function($scope){
+    return $scope;
+}]);
+
 
 controllers.controller('UploadController', ['$scope', 'FileUploader', function($scope, FileUploader) {
     var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

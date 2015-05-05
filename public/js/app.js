@@ -1,24 +1,34 @@
 'use strict';
 
 /* App Module */
-var genealogy = angular.module('lubidariApp', [
+var lubidari = angular.module('lubidariApp', [
         'ngRoute',
         'ProdService',
         'Controllers',
+        'Directive',
         'ui.bootstrap',
         'angularFileUpload'
     ],
     function ($interpolateProvider) {
         $interpolateProvider.startSymbol('<{').endSymbol('}>');
     });
+lubidari.value('item', []);
 
 
-genealogy.config(['$routeProvider',
+lubidari.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/', {
                 templateUrl: '/js/template/home.html',
                 controller: 'HomeCtrl'
+            }).
+            when('/to-order', {
+                templateUrl: '/js/template/order.html',
+                controller: 'OrderCtrl'
+            }).
+            when('/cart', {
+                templateUrl: '/js/template/cart.html',
+                controller: 'CartCtrl'
             }).
             when('/:id', {
                 templateUrl: '/js/template/show.html',
@@ -73,6 +83,14 @@ controllers.controller('ShowCtrl', ['$scope', 'ServiceId', '$routeParams', '$win
         }
     }
 ]);
+
+controllers.controller('OrderCtrl',['$scope', function($scope){
+    return $scope;
+}]);
+
+controllers.controller('CartCtrl',['$scope', function($scope){
+    return $scope;
+}]);
 
 
 controllers.controller('UploadController', ['$scope', 'FileUploader', function($scope, FileUploader) {
@@ -133,7 +151,27 @@ controllers.controller('UploadController', ['$scope', 'FileUploader', function($
 
     console.info('uploader', uploader);
 }]);
+var direct = angular.module('Directive', []);
 
+direct.directive('product', ['$window',
+    function ($window) {
+        function link($scope, e) {
+            e.children(".btn-link").on("click", function () {
+                $window.item =  JSON.stringify($scope.one);
+                console.log($window.item);
+            });
+        }
+
+        return {
+            restrict: "E",
+            replace: true,
+            scope: true,
+            templateUrl: '/js/template/product.html',
+            link: function ($scope, e) {
+                link($scope, e);
+            }
+        }
+    }]);
 'use strict';
 
 /* Filters */

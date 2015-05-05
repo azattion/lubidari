@@ -10,27 +10,26 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-Route::get('/', ['as'=>'home', 'uses' => 'HomeController@index']);
-
-Route::group(['prefix' => 'administrator'], function(){
-    Route::get('/',['as' => 'adminHome','uses' => 'AdminController@index']);
-    Route::get('/statistics',['as' => 'adminStat','uses' =>'AdminController@statistics']);
+Route::group(['prefix' => 'administrator'], function () {
+    Route::get('/', ['as' => 'adminHome', 'uses' => 'AdminController@index']);
+    Route::get('/statistics', ['as' => 'adminStat', 'uses' => 'AdminController@statistics']);
 });
 
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('/product/list','ProductController@listing');
-Route::get('/product/show/{id}','ProductController@showAjax');
+Route::get('/product/list', 'ProductController@listing');
+Route::get('/product/show/{id}', 'ProductController@showAjax');
 
-Route::group(['prefix' => 'administrator'], function(){
-    Route::resource('product','ProductController');
-    Route::resource('label','LabelController');
-    Route::resource('photo','PhotoController');
-    Route::resource('order','OrderController');
-    Route::resource('category','CategoryController');
+Route::group(['prefix' => 'administrator'], function () {
+    Route::resource('product', 'ProductController');
+    Route::resource('label', 'LabelController');
+    Route::resource('photo', 'PhotoController');
+    Route::resource('order', 'OrderController');
+    Route::resource('category', 'CategoryController');
 });

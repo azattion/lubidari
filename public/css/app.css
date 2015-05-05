@@ -263,6 +263,8 @@ th {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
+  font-size: 90%;
+  margin-right: 5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -5209,6 +5211,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-default .panel-body {
   border-top: 3px solid #D2D6DE;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 1px;
 }
 .panel-default > .panel-heading {
   color: #333333;

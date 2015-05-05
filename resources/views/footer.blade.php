@@ -5,7 +5,6 @@
 <script src="{{ asset('js/angular-file-upload.js') }}"></script>
 <script src="{{ asset('js/ui-bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
-<script type="text/javascript">genealogy.constant("CSRF_TOKEN", '{{csrf_token()}}');</script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
