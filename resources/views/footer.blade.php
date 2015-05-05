@@ -3,6 +3,7 @@
 <script src="{{ asset('js/route.js') }}"></script>
 <script src="{{ asset('js/angular-loader.min.js') }}"></script>
 <script src="{{ asset('js/angular-file-upload.js') }}"></script>
+<script src="{{ asset('js/angular-animate.min.js') }}"></script>
 <script src="{{ asset('js/ui-bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
