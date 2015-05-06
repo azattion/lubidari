@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1" style="height: 100px;">
             <div class="col-md-6">
-                <h3><a href="/#/">Люби дари</a></h3>
+                <h3><a href="#">Люби дари</a></h3>
             </div>
             <div class="col-md-6 text-right">
                 <h3>+996 700 75 56 35</h3>

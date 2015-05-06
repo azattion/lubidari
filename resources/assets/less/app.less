@@ -49,3 +49,27 @@ table{
   width: 230px;
   z-index: 810;
 }
+
+.animation {
+  -webkit-transition: 1s;
+}
+
+.animation.ng-enter {
+  opacity: 0;
+  border: 3px solid #fff;
+}
+
+.animation.ng-leave {
+  opacity: 1;
+  border: 3px solid slateblue;
+}
+
+.animation.ng-enter.ng-enter-active {
+  opacity: 1;
+  border: 3px solid #708090;
+}
+
+.animation.ng-leave.ng-leave-active {
+  opacity: 0;
+  border: 3px solid #fff;
+}

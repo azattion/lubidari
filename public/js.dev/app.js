@@ -3,6 +3,7 @@
 /* App Module */
 var lubidari = angular.module('lubidariApp', [
         'ngRoute',
+        'ngAnimate',
         'ProdService',
         'Controllers',
         'Directive',

@@ -2,6 +2,7 @@
 <div>
     <pre><{$window.item|json}></pre>
 </div>
+<input ng-model="filterTitle">
 <div class="row">
-    <product ng-repeat="one in data"></product>
+    <product class="animation" ng-repeat="one in data | filter: filterTitle"></product>
 </div>
