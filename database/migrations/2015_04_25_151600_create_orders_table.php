@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration {
             $table->text('desc');
             $table->integer('total');
             $table->boolean('status');
+            $table->softDeletes();
 			$table->timestamps();
 		});
 	}

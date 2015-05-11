@@ -5,21 +5,21 @@
         <div class="row">
             <div class="col-lg-12">
                 @if(count($data)>0)
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>ФИО</th>
-                        <th>Телефон</th>
-                        <th>Адрес</th>
-                        <th>Параметры доставки</th>
-                        <th>Дата доставки</th>
-                        <th>Время доставки</th>
-                        <th>Создан</th>
-                        <th>Функции</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>ФИО</th>
+                            <th>Телефон</th>
+                            <th>Адрес</th>
+                            <th>Параметры доставки</th>
+                            <th>Дата доставки</th>
+                            <th>Время доставки</th>
+                            <th>Создан</th>
+                            <th>Функции</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         @foreach($data as $one)
                             <tr>
                                 <td>{{{$one->id}}}</td>
@@ -31,13 +31,20 @@
                                 <td>{{{$one->delivery_time}}}</td>
                                 <td>{{{$one->created_at}}}</td>
                                 <td>
-                                    <a href="{{route('administrator.order.destroy',$one->id)}}"><span class="glyphicon glyphicon-trash"></span> Удалить</a>
+                                    <form action="{{route('administrator.order.destroy',$one->id)}}" method="POST"
+                                          name="delete">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                        <button type="submit" class="btn btn-link btn-sm">
+                                            <span class="glyphicon glyphicon-trash"></span> Удалить
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
-                <div class="pagination pagination-centered"></div>
+                        </tbody>
+                    </table>
+                    <div class="pagination pagination-centered"></div>
                 @else
                     <h4 class="text-center">Пока данных нет</h4>
                 @endif

@@ -1,14 +1,18 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductLabel extends Model {
+class ProductLabel extends Model
+{
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
-   public $timestamps = false;
+    public $timestamps = false;
     /**
      * @var array
      */
-	protected $fillable = ['id_prod','id_lab'];
+    protected $fillable = ['id_prod', 'id_lab'];
 
     /**
      * @var array

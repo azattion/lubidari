@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1" style="height: 100px;">
             <div class="col-md-6">
-                <h3><a href="#">Люби дари</a></h3>
+                <h3><a href="#/home">Люби дари</a></h3>
             </div>
             <div class="col-md-6 text-right">
                 <h3>+996 700 75 56 35</h3>
@@ -24,8 +24,9 @@
                     <div class="panel-heading">
                         <span class="glyphicon glyphicon-shopping-cart"></span> Корзина</div>
                     <div class="panel-body">
-                        <a href="#/cart">Корзина</a>
-                        <a href="#/to-order">Оформить заказ</a>
+                        <ngcart-summary></ngcart-summary>
+                        <a href="#/cart" class="btn btn-primary">Корзина</a>
+                        <a href="#/to-order" class="btn btn-primary">Оформить заказ</a>
                     </div>
                 </div>
                 <div class="panel panel-default">

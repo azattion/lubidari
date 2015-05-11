@@ -29,14 +29,16 @@ class OrderController extends Controller {
 		//
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Requests\OrderRequest $request
+     * @return Response
+     */
+	public function store(Requests\OrderRequest $request)
 	{
-		//
+        Order::create($request->all());
+        return true;
 	}
 
 	/**
@@ -47,7 +49,8 @@ class OrderController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $data = Order::findOrFail($id);
+		return view('order.show', compact('data'));
 	}
 
 	/**
@@ -80,7 +83,8 @@ class OrderController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Order::destroy($id);
+        return redirect('/administrator/order');
 	}
 
 }

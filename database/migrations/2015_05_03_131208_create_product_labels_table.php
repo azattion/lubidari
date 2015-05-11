@@ -17,6 +17,7 @@ class CreateProductLabelsTable extends Migration
             $table->increments('id');
             $table->integer('id_prod')->unsigned();
             $table->integer('id_lab')->unsigned();
+            $table->softDeletes();
         });
 
         Schema::table('product_labels', function (Blueprint $table) {

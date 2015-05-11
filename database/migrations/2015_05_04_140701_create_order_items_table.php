@@ -19,6 +19,7 @@ class CreateOrderItemsTable extends Migration {
             $table->integer('id_order')->unsigned();
             $table->integer('id_prod')->unsigned();
             $table->integer('quantity');
+            $table->softDeletes();
 			$table->timestamps();
 		});
 

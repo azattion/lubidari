@@ -25,6 +25,7 @@ Route::controllers([
 
 Route::get('/product/list', 'ProductController@listing');
 Route::get('/product/show/{id}', 'ProductController@showAjax');
+Route::post('/order/store','OrderController@store');
 
 Route::group(['prefix' => 'administrator'], function () {
     Route::resource('product', 'ProductController');

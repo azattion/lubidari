@@ -4,6 +4,8 @@
 var lubidari = angular.module('lubidariApp', [
         'ngRoute',
         'ngAnimate',
+        'ngCart',
+        'angular-loading-bar',
         'ProdService',
         'Controllers',
         'Directive',
@@ -13,13 +15,14 @@ var lubidari = angular.module('lubidariApp', [
     function ($interpolateProvider) {
         $interpolateProvider.startSymbol('<{').endSymbol('}>');
     });
-lubidari.value('item', []);
-
+lubidari.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+}]);
 
 lubidari.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
-            when('/', {
+            when('/home', {
                 templateUrl: '/js/template/home.html',
                 controller: 'HomeCtrl'
             }).
@@ -36,6 +39,6 @@ lubidari.config(['$routeProvider',
                 controller: 'ShowCtrl'
             }).
             otherwise({
-                redirectTo: '/'
+                redirectTo: '/home'
             });
     }]);

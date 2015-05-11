@@ -4,8 +4,8 @@
 var services = angular.module('ProdService', ['ngResource']);
 services.factory('Service',
         function($resource) {
-            return $resource('/product/list',
-                    {query: {method: 'GET', isArray: false}});
+            return $resource('/product/list?page=:page',{},
+                    {query: {method: 'GET', params: {page: '@page'}}});
         });
 services.factory('ServiceId',
         function($resource) {

@@ -17,6 +17,7 @@ class CreateLabelsTable extends Migration {
 			$table->increments('id');
             $table->string('title')->unique();
             $table->integer('id_cat');
+            $table->softDeletes();
             $table->timestamps();
 		});
 	}

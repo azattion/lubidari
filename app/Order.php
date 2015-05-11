@@ -1,9 +1,12 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     /**
      * @var array
@@ -20,7 +23,7 @@ class Order extends Model
      */
     public function items()
     {
-        return $this->hasMany('order_items', 'id_order');
+        return $this->hasMany('App\OrderItems', 'id_order');
     }
 
     /**

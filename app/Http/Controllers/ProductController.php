@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::latest()->paginate(50);
+        $data = Product::latest()->paginate(10);
         return view('product.index', ['data' => $data]);
     }
 
@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function listing()
     {
-        $data = Product::all();
+       $data = Product::latest()->paginate(10);
        return response()->json($data);
     }
 

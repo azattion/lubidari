@@ -1,8 +1,12 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model {
+class Category extends Model
+{
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     /**
      * @var bool
@@ -22,7 +26,8 @@ class Category extends Model {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-	public function products(){
-        return $this->hasMany('App\Product','id_cat');
+    public function products()
+    {
+        return $this->hasMany('App\Product', 'id_cat');
     }
 }
