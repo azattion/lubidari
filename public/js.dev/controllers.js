@@ -35,11 +35,11 @@ controllers.controller('HomeCtrl', ['$scope', 'Service', '$window','cfpLoadingBa
         $scope.loadingItems(1);
     }]);
 
-controllers.controller('ShowCtrl', ['$scope', 'ServiceId', '$routeParams', '$window',
-    function ($scope, ServiceId, $routeParams, $window) {
+controllers.controller('ShowCtrl', ['$scope', 'ServiceId', '$routeParams', 'DataCache',
+    function ($scope, ServiceId, $routeParams, DataCache) {
         $scope.loading = true;
-        var data = JSON.parse($window.localStorage.getItem("data#" + $routeParams.id));
-        if (data == null || data == undefined) {
+      /*  var data = JSON.parse($window.localStorage.getItem("data#" + $routeParams.id));
+      /*  if (data == null || data == undefined) {
             $scope.prod = ServiceId.show({id: $routeParams.id}, function () {
                 $scope.loading = false;
                 $window.localStorage.setItem("data#" + $routeParams.id, JSON.stringify($scope.prod));
@@ -52,7 +52,23 @@ controllers.controller('ShowCtrl', ['$scope', 'ServiceId', '$routeParams', '$win
         } else {
             $scope.loading = false;
             $scope.prod = data;
+        }*/
+        $scope.prod = DataCache.get('prod');
+
+        if (!$scope.prod) {
+            $scope.prod = ServiceId.show({id: $routeParams.id}, function () {
+                $scope.loading = false;
+                DataCache.put('prod', $scope.prod);
+               // $window.localStorage.setItem("data#" + $routeParams.id, JSON.stringify($scope.prod));
+            }, function () {
+                $scope.loading = false;
+                $scope.alerts = [
+                    {type: 'danger', msg: 'Кечиресиз, жуктоо ийгиликсиз аяктады. Дагы аракет кылып корунуз'}
+                ];
+            });
         }
+
+        console.log(DataCache.info());
     }
 ]);
 

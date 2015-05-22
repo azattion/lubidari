@@ -1,8 +1,8 @@
-<div class="col-md-3">
-    <img ng-src="http://www.lubidari.ru/f/products_new/Glavnaja_middle_4280.jpg" width="130" height="auto">
+<div class="col-md-4 text-center" style="margin-bottom: 40px">
+    <img ng-src="http://www.lubidari.ru/f/products_new/Glavnaja_middle_4280.jpg" width="170" height="auto">
 
-    <div><a href="/#/<{one.id}>"><{one.title}></a></div>
-    <{one.price}>
+    <div><a href="/#/<{one.id}>"><{one.title}></a>     <{one.price}></div>
+
    <!-- <button-to-cart id="<{one.id}>" name="<{ one.title }>" price="<{ one.price }>" quantity="1"></button-to-cart>
    -->
     <ngcart-addtocart id="<{ one.id }>" name="<{ one.title }>" price="<{ one.price }>" quantity="1" quantity-max="30" data="one">

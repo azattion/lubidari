@@ -12,17 +12,15 @@
         </div>
         <div class="col-lg-10 col-md-offset-1">
             <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Контент</div>
-                    <div class="panel-body">
-                        <div ng-view></div>
-                    </div>
+                <div class="panel-body">
+                    <div ng-view class="at-view-slide-in-bottom  at-view-slide-out-bottom"></div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Корзина</div>
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Корзина
+                    </div>
                     <div class="panel-body">
                         <ngcart-summary></ngcart-summary>
                         <a href="#/cart" class="btn btn-primary">Корзина</a>

@@ -19,6 +19,10 @@ lubidari.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
 }]);
 
+lubidari.factory('DataCache', function ($cacheFactory) {
+    return $cacheFactory('dataCache', {});
+});
+
 lubidari.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
